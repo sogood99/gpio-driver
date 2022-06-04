@@ -4,7 +4,6 @@
 #include <linux/module.h>
 #include <linux/uaccess.h>
 
-#define MAJOR_DEVICE 90
 #define DRIVER_NAME "dummydriver"
 #define DRIVER_CLASS "MyModuleClass"
 
