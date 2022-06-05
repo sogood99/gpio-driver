@@ -1,7 +1,15 @@
-obj-m += my_module.o
+ifneq ($(KERNELRELEASE),)
+	obj-m += my_module.o
 
-all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+else
+
+	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+	PWD := $(shell pwd)
+
+default:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
+
+endif
